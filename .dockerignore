@@ -10,3 +10,20 @@ node_modules
 **/*.log
 logo.png
 .DS_Store
+
+# --- Linux-only image: strip non-Linux native artifacts ---
+# Windows natives
+packages/napcat-native/**/win32-*
+packages/napcat-native/**/win32.*
+packages/napcat-native/**/*.win32.*.node
+packages/napcat-native/napi2native/ffmpeg.dll
+packages/napcat-shell-loader/*.dll
+packages/napcat-shell-loader/*.exe
+packages/napcat-shell-loader/*.bat
+packages/napcat-napi-loader
+packages/napcat-develop/QQNT.dll
+
+# macOS natives (not needed inside ubuntu container)
+packages/napcat-native/**/*.darwin.*.node
+packages/napcat-native/**/darwin.*
+/data/

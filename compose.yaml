@@ -4,6 +4,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile
     image: napcatqq:local
+    hostname: pc-desktop
     container_name: napcat
     restart: unless-stopped
     environment:

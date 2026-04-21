@@ -66,7 +66,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     rm -f /tmp/linuxqq.deb; \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN useradd --no-log-init -u 1000 -m -d /app -s /bin/bash napcat
+RUN set -eux; \
+    if id -u ubuntu >/dev/null 2>&1; then userdel -r ubuntu 2>/dev/null || true; fi; \
+    useradd --no-log-init -u 1000 -m -d /app -s /bin/bash napcat
 
 WORKDIR /app
 
