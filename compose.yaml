@@ -1,0 +1,27 @@
+services:
+  napcat:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: napcatqq:local
+    container_name: napcat
+    restart: unless-stopped
+    environment:
+      # 登录目标 QQ 号；为空则启动后扫码登录
+      ACCOUNT: ""
+      # WebUI 访问 token（首次启动生成 webui.json 时写入）
+      WEBUI_TOKEN: "napcat"
+      WEBUI_PREFIX: ""
+      # 宿主 UID/GID，使挂载卷权限对齐（Mac 通常 501）
+      NAPCAT_UID: "1000"
+      NAPCAT_GID: "1000"
+      TZ: "Asia/Shanghai"
+      # 可选：按预设 bot 模板初始化 onebot11.json
+      # 可选值：ws / astrbot / koishi / nonebot / dice / sealdice / olivos / q2tg
+      # MODE: "ws"
+    ports:
+      - "6099:6099"   # WebUI
+      # - "3001:3001" # 如果启用 ws MODE
+    volumes:
+      - ./data/napcat/config:/app/napcat/config
+      - ./data/qq:/app/.config/QQ

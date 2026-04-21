@@ -1,0 +1,12 @@
+.git
+.github
+.vscode
+.idea
+NapCat-Docker
+node_modules
+**/node_modules
+**/dist
+**/.turbo
+**/*.log
+logo.png
+.DS_Store
